@@ -64,7 +64,6 @@ export const loginUser = createAsyncThunk(
       }
 
       localStorage.setItem("token", data.token);
-
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue("Login failed.");

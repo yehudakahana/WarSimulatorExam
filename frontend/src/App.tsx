@@ -4,7 +4,8 @@ import Signup from "./pages/signup/Signup";
 import PrivateRoute from "./utils/PrivateRoute";
 // import Layout from "./components/Layout/Layout";
 import { Route, Routes } from "react-router-dom";
-import Candidates from "./pages/candidates/Candidates";
+import Attack from "./pages/Attack/Attack";
+import Defence from "./pages/Defense/Defence";
 
 
 function App() {
@@ -15,10 +16,11 @@ function App() {
        <Routes>
       { <Route path='/' element={<Login/>} /> } 
       { <Route path='/signup' element={<Signup/>} /> } 
-      { <Route path='/candidates' element={<Candidates/>} /> } 
+      { <Route path='/attack' element={<Attack/>} /> } 
+      { <Route path='/defence' element={<Defence/>} /> } 
 
 
-   
+
 
       {/* <Layout children={ */}
           {/* { <Route path='/floor/:index'  element={<PrivateRoute component={<Floor/>} />} /> } */}

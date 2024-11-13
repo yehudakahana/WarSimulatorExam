@@ -1,7 +1,7 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
 // הגדרת ממשק Organization
-export interface IMissile extends Document {
+export interface IOrganization extends Document {
     name: string;
     resources: {
       name: string;
@@ -10,7 +10,7 @@ export interface IMissile extends Document {
     budget: number;
    }
 
-const organizationSchema = new Schema<IMissile>({
+const organizationSchema = new Schema<IOrganization>({
     name: {
         type: String,
         required: true,
@@ -37,7 +37,7 @@ const organizationSchema = new Schema<IMissile>({
     }
 }); 
 
-const Organization = mongoose.model<IMissile>('Organization', organizationSchema);
+const Organization = mongoose.model<IOrganization>('Organization', organizationSchema);
 
 export default Organization;
 

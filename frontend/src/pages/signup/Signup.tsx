@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { resetStatus, registerUser } from "../../store/userSlice"; 
 import { RootState } from "../../store/store"; 
-import { Link } from "react-router-dom";
+import { Link , } from "react-router-dom";
 import "./Signup.css";
 
 const Signup = () => {
@@ -35,14 +35,14 @@ const Signup = () => {
           setArea(""); 
       }
     } else {
-      setArea(""); 
+      setArea("none choosen"); 
     }
   }, [dispatch, organization]); 
 
 
   // פונקציה של התחברות
   const SignupFunc = () => {
-    if (username && password && organization && area) {
+    if (username && password && organization) {
       //@ts-ignore
       dispatch(registerUser({ username, password, organization, area }));
     } else {

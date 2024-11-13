@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document } from 'mongoose';
-import { IMissile } from './organization';
+import { IMissile } from './missiles';
 
 // הגדרת ממשק User
 export interface IUser extends Document {
