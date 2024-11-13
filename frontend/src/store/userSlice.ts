@@ -23,7 +23,7 @@ const initialState: IUserState = {
 // פעולה אסינכרונית לרישום משתמש
 export const registerUser = createAsyncThunk(
   "user/registerUser",
-  async (userData: { username: string; password: string, isAdmin: boolean }, thunkAPI) => {
+  async (userData: { username: string; password: string,  }, thunkAPI) => {
     try {
       const response = await fetch(`${BASE_URL}/register/`, {
         method: "POST",

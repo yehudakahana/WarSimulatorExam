@@ -22,11 +22,11 @@ const Login = () => {
   };
 
  
-  useEffect(() => {
-    if (status === "succeeded") {
-      navigate("/candidates"); 
-    }
-  }, [status, navigate]);
+  // useEffect(() => {
+  //   if (status === "succeeded") {
+  //     navigate("/candidates"); 
+  //   }
+  // }, [status, navigate]);
 
   return (
     <div className="login-container">
