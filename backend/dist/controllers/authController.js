@@ -16,65 +16,89 @@ exports.loginUser = exports.registerUser = void 0;
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const user_1 = __importDefault(require("../models/user"));
+const organization_1 = __importDefault(require("../models/organization"));
+const missiles_1 = __importDefault(require("../models/missiles"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const JWT_SECRET = process.env.JWT_SECRET;
 // רישום משתמש חדש
 const registerUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { username, password, isAdmin } = req.body;
+    const { username, password, organization, area } = req.body;
     try {
+        // בדוק אם המשתמש כבר קיים
         const existingUser = yield user_1.default.findOne({ username });
         if (existingUser) {
-            res.status(400).json({ message: 'Username already exists' });
+            res.status(400).json({ message: 'שם משתמש כבר קיים' });
             return;
         }
+        // חישוב סיסמא מוצפנת
         const hashedPassword = yield bcrypt_1.default.hash(password, 10);
+        // חפש את הארגון הספציפי לפי שם
+        const specificOrganization = yield organization_1.default.findOne({ name: organization });
+        if (!specificOrganization) {
+            res.status(400).json({ message: 'הארגון לא נמצא' });
+            return;
+        }
+        const specificMissiles = yield Promise.all(specificOrganization.resources.map((missile) => __awaiter(void 0, void 0, void 0, function* () {
+            const missileObject = yield missiles_1.default.findOne({ name: missile.name });
+            if (missileObject) {
+                missileObject.amount = missile.amount;
+                return missileObject;
+            }
+        })));
         const newUser = new user_1.default({
             username,
             password: hashedPassword,
-            isAdmin,
-            hasVoted: false,
+            organization,
+            area,
+            missiles: specificMissiles.filter(Boolean),
         });
         yield newUser.save();
-        res.status(201).json({ message: 'User created successfully' });
+        res.status(201).json({ message: 'המשתמש נוצר בהצלחה', newUser });
     }
     catch (err) {
-        res.status(500).json({ message: 'Error registering user' });
+        console.log(err);
+        res.status(500).json({ message: 'שגיאה ברישום המשתמש' });
     }
 });
 exports.registerUser = registerUser;
-// התחברות משתמש
 const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { username, password } = req.body;
     try {
         const user = yield user_1.default.findOne({ username });
         if (!user) {
-            res.status(400).json({ message: 'Invalid username or password' });
+            res.status(400).json({ message: 'שם משתמש או סיסמה לא תקינים' });
             return;
         }
         const isMatch = yield bcrypt_1.default.compare(password, user.password);
         if (!isMatch) {
-            res.status(400).json({ message: 'Invalid username or password' });
+            res.status(400).json({ message: 'שם משתמש או סיסמה לא תקינים' });
             return;
         }
-        const token = jsonwebtoken_1.default.sign({ id: user._id, username: user.username, isAdmin: user.isAdmin }, JWT_SECRET, { expiresIn: '1h' });
+        const token = jsonwebtoken_1.default.sign({ id: user._id, username: user.username, organization: user.organization, area: user.area }, JWT_SECRET, { expiresIn: '1h' });
         res.json({
-            user: { id: user._id, username: user.username, isAdmin: user.isAdmin },
+            user: { id: user._id, username: user.username, organization: user.organization, area: user.area },
             token,
         });
     }
     catch (err) {
         console.log(err);
-        res.status(500).json({ message: 'Error logging in' });
+        res.status(500).json({ message: 'שגיאה בהתחברות' });
     }
 });
 exports.loginUser = loginUser;
 // import bcrypt from 'bcrypt';
+// import jwt from 'jsonwebtoken';
 // import User from '../models/user';  
+// import Organization from "../models/organization"
+// import Missile from "../models/missiles"
 // import { Request, Response } from 'express';
+// import dotenv from "dotenv"
+// dotenv.config()
+// const JWT_SECRET = process.env.JWT_SECRET;
 // // רישום משתמש חדש
 // export const registerUser = async (req: Request, res: Response) => {
-//   const { username, password,isAdmin } = req.body;
+//   const { username, password, organization, area } = req.body;
 //   try {
 //     const existingUser = await User.findOne({ username });
 //     if (existingUser) {
@@ -82,15 +106,28 @@ exports.loginUser = loginUser;
 //       return;
 //     }
 //     const hashedPassword = await bcrypt.hash(password, 10);
+//      const spesificOrganization= await Organization.findOne({name : organization} )
+//      console.log("organiziyion:", spesificOrganization)
+//      //@ts-ignore
+//      const spesigicMissiles = spesificOrganization.resources;
+//      console.log("missiles:", spesigicMissiles)
+//      spesigicMissiles.map((missile: any) =>{
+//        const missileObject = await Missile.findOne({name : missile.name});
+//        //@ts-ignore
+//        missileObject.amount = missile.amount
+//        return missileObject;
+//      })
 //     const newUser = new User({
 //       username,
 //       password: hashedPassword,
-//       isAdmin,
-//       hasVoted: false,
+//       organization,
+//       area,
+//       missiles: spesigicMissiles,
 //     });
 //     await newUser.save();
 //     res.status(201).json({ message: 'User created successfully' });
 //   } catch (err) {
+//     console.log(err)
 //     res.status(500).json({ message: 'Error registering user' });
 //   }
 // };
@@ -100,18 +137,25 @@ exports.loginUser = loginUser;
 //   try {
 //     const user = await User.findOne({ username });
 //     if (!user) {
-//        res.status(400).json({ message: 'Invalid username or password' });
-//        return;
+//      res.status(400).json({ message: 'Invalid username or password' });
+//      return;
 //     }
 //     const isMatch = await bcrypt.compare(password, user.password);
 //     if (!isMatch) {
 //      res.status(400).json({ message: 'Invalid username or password' });
 //      return;
 //     }
+//     const token = jwt.sign(
+//       { id: user._id, username: user.username, organisition: user.organization, area: user.area},
+//       JWT_SECRET!,
+//       { expiresIn: '1h' } 
+//     );
 //     res.json({
-//       user: { id: user._id, username: user.username, isAdmin: user.isAdmin },
+//       user: { id: user._id, username: user.username, organisition: user.organization, area: user.area },
+//       token, 
 //     });
 //   } catch (err) {
+//     console.log(err);
 //     res.status(500).json({ message: 'Error logging in' });
 //   }
 // };

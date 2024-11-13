@@ -23,8 +23,8 @@ connectDB();
 app.use('/api', authRoutes);  
 
 
-//@ts-ignore
-app.use('/api', verifyToken); 
+// //@ts-ignore
+// app.use('/api', verifyToken); 
 
 // הפעלת השרת
 app.listen(port, () => {

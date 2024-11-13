@@ -34,18 +34,42 @@ const userSchema = new mongoose_1.Schema({
         type: String,
         required: true,
     },
-    isAdmin: {
-        type: Boolean,
-        default: false,
+    organization: {
+        type: String,
+        required: true,
     },
-    hasVoted: {
-        type: Boolean,
-        default: false,
+    area: {
+        type: String,
+        required: true,
     },
-    voteFor: {
-        type: mongoose_1.Schema.Types.ObjectId,
-        ref: 'Candidate',
-        default: null,
+    missiles: {
+        type: [
+            { name: {
+                    type: String,
+                    required: true,
+                },
+                description: {
+                    type: String,
+                    required: true,
+                },
+                speed: {
+                    type: Number,
+                    required: true,
+                },
+                intercepts: {
+                    type: [String],
+                    required: true,
+                },
+                price: {
+                    type: Number,
+                    required: true,
+                },
+                amount: {
+                    type: Number,
+                    required: false
+                }
+            }
+        ]
     },
 });
 const User = mongoose_1.default.model('User', userSchema);
