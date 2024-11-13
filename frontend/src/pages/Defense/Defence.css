@@ -1,0 +1,48 @@
+.defense {
+    font-family: Arial, sans-serif;
+    margin: 30px;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .defense-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .defense-table-container {
+    max-width: 80%;
+    margin: 0 auto;
+    overflow-x: auto;
+  }
+  
+  .defense-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+  }
+  
+  .defense-table th, .defense-table td {
+    padding: 15px;
+    border: 1px solid #ddd;
+    text-align: center;
+    font-size: 1rem;
+  }
+  
+  .defense-table th {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .defense-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+
+  

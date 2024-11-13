@@ -1,0 +1,48 @@
+.attack {
+    font-family: Arial, sans-serif;
+    margin: 30px;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .attack-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .attack-table-container {
+    max-width: 80%;
+    margin: 0 auto;
+    overflow-x: auto;
+  }
+  
+  .attack-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+  }
+  
+  .attack-table th, .attack-table td {
+    padding: 15px;
+    border: 1px solid #ddd;
+    text-align: center;
+    font-size: 1rem;
+  }
+  
+  .attack-table th {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .attack-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+
+  

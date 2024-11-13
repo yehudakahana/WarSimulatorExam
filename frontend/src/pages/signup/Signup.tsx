@@ -32,7 +32,7 @@ const Signup = () => {
           setArea("West Bank");
           break;
         default:
-          setArea(""); 
+          setArea("Area not found"); 
       }
     } else {
       setArea("none choosen"); 
