@@ -39,7 +39,7 @@ const Signup = () => {
     }
   }, [dispatch, organization]); 
 
-  
+
   // פונקציה של התחברות
   const SignupFunc = () => {
     if (username && password && organization && area) {
