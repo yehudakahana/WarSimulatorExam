@@ -1,7 +1,6 @@
 import express, { Request, Response } from 'express';
 import cors from 'cors';
 import authRoutes from './routes/authRouter';
-import candidateRoutes from './routes/candidateRouter';
 import connectDB from './DAL/data';
 import { verifyToken } from './middleware/authMiddleware'; 
 import dotenv from 'dotenv';
@@ -23,7 +22,6 @@ connectDB();
 // חיבור לראוטים
 app.use('/api', authRoutes);  
 
-app.use('/api', candidateRoutes); 
 
 //@ts-ignore
 app.use('/api', verifyToken); 

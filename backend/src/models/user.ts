@@ -1,13 +1,14 @@
 import mongoose, { Schema, Document } from 'mongoose';
+import { IMissile } from './organization';
 
 // הגדרת ממשק User
 export interface IUser extends Document {
   username: string;
   password: string;
-  isAdmin: boolean;
-  hasVoted: boolean;
-  voteFor: mongoose.Types.ObjectId | null;
-  
+  organization: string;
+  area: string;
+  missiles: IMissile[];
+
 }
 
 const userSchema = new Schema<IUser>({
@@ -20,19 +21,46 @@ const userSchema = new Schema<IUser>({
     type: String,
     required: true,
   },
-  isAdmin: {
-    type: Boolean,
-    default: false, 
+  organization: {
+    type: String,
+    required: true,
   },
-  hasVoted: {
-    type: Boolean,
-    default: false,  
+  area: {
+    type: String,
+    required: true,
   },
-  voteFor: {
-    type: Schema.Types.ObjectId,
-    ref: 'Candidate',
-    default: null,  
+  missiles: {
+    type: [
+      {name: {
+        type: String,
+        required: true,
+      },
+        description:{
+        type: String,
+        required: true,
+      },
+        speed: {
+          type: Number,
+          required: true,
+        },
+        intercepts:{
+          type: [String],
+          required: true,
+        },
+        price: {
+          type: Number,
+          required: true,
+        },
+        amount:{
+          type:Number,
+          required: false
+        }
+      }
+    ]
+
   },
+ 
+  
 });
 
 const User = mongoose.model<IUser>('User', userSchema);
