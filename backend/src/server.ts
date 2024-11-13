@@ -4,6 +4,7 @@ import authRoutes from './routes/authRouter';
 import connectDB from './DAL/data';
 import { verifyToken } from './middleware/authMiddleware'; 
 import dotenv from 'dotenv';
+import {StartSocket} from './spcket';
 
 dotenv.config();
 
@@ -17,6 +18,9 @@ app.use(cors());
 
 // חיבור ל-MongoDB
 connectDB();
+
+//פתיחת סוקט
+StartSocket();
 
 
 // חיבור לראוטים
