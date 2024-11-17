@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../store/userSlice"; 
@@ -27,9 +28,13 @@ const Login = () => {
       // @ts-ignore
       if (response.payload.user.area ==="none choosen") {
         navigate("/attack");
+        // @ts-ignore
+        localStorage.setItem("user", JSON.stringify(response.payload.user));
     }
     else {
       navigate("/defence");
+       // @ts-ignore
+       localStorage.setItem("user", JSON.stringify(response.payload.user));
     }
     }
   };
@@ -83,7 +88,29 @@ export default Login;
 
 
 
-// import React, { useState, useEffect } from "react";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React, { useState } from "react";
 // import { useDispatch, useSelector } from "react-redux";
 // import { loginUser } from "../../store/userSlice"; 
 // import { RootState } from "../../store/store"; 
@@ -99,19 +126,32 @@ export default Login;
 //   const [password, setPassword] = useState("");
 
 //   // פונקציה של התחברות
-//   const loginFunc = () => {
+//   const loginFunc = async () => {
 //     if (username && password) {
-//       //@ts-ignore
-//      const result = dispatch(loginUser({ username, password }));
-     
-//   };
+//         // @ts-ignore: 
+//       const response =  await dispatch(loginUser({ username, password }));
+      
+//       if (response.error) {
+//         alert(response.error);
+//         return;
+//       }
 
- 
-//   // useEffect(() => {
-//   //   if (status === "succeeded") {
-//   //     navigate("/candidates"); 
-//   //   }
-//   // }, [status, navigate]);
+//       // @ts-ignore: 
+//       if (response.payload.token) {
+//         // שמירה של שם המשתמש ב-localStorage אם התחברות הצליחה
+//         // @ts-ignore:
+//         localStorage.setItem("username", response.payload.username); // הוספת שם המשתמש ל-localStorage
+//       }
+
+//       // ניווט לאזורים שונים על פי נתוני המשתמש
+//       // @ts-ignore
+//       if (response.payload.user.area === "none choosen") {
+//         navigate("/attack");
+//       } else {
+//         navigate("/defence");
+//       }
+//     }
+//   };
 
 //   return (
 //     <div className="login-container">
@@ -142,10 +182,17 @@ export default Login;
 //       {status === "succeeded" && <p style={{ color: "green" }}>Login successful</p>}
 
 //       <div>
-//         <Link className="link-container" to="/signup">Don't have an account?  Sign up here!</Link>
+//         <Link className="link-container" to="/signup">Don't have an account? Sign up here!</Link>
 //       </div>
 //     </div>
 //   );
 // };
 
 // export default Login;
+
+
+
+
+
+
+

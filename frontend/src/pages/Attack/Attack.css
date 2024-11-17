@@ -1,48 +1,134 @@
-.attack {
-    font-family: Arial, sans-serif;
-    margin: 30px;
-    padding: 20px;
-    background-color: #f7f7f7;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .attack-title {
-    text-align: center;
-    font-size: 2rem;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  .attack-table-container {
-    max-width: 80%;
-    margin: 0 auto;
-    overflow-x: auto;
-  }
-  
-  .attack-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: #fff;
-  }
-  
-  .attack-table th, .attack-table td {
-    padding: 15px;
-    border: 1px solid #ddd;
-    text-align: center;
-    font-size: 1rem;
-  }
-  
-  .attack-table th {
-    background-color: #4CAF50;
-    color: white;
-    font-weight: bold;
-  }
-  
-  .attack-table tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-  
+/* Attack.css */
 
-  
+/* General Page Layout */
+.attack-page {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 1000px;
+  margin: 20px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  color: #333;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 1rem;
+  color: #666;
+  margin: 10px 0;
+}
+
+h4 {
+  font-size: 1.2rem;
+  margin: 20px 0 10px;
+  color: #333;
+}
+
+/* Location Section */
+.location {
+  margin-bottom: 20px;
+}
+
+.location label {
+  font-size: 1rem;
+  color: #555;
+}
+
+select {
+  padding: 8px 12px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+select:focus {
+  border-color: #4c9aff;
+  outline: none;
+}
+
+/* Missile Buttons */
+.missile-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.missile-buttons button {
+  background-color: #4c9aff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 150px;
+  margin-bottom: 10px;
+}
+
+.missile-buttons button:hover {
+  background-color: #3b80d0;
+}
+
+.missile-buttons button:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+
+/* Table Container */
+.table-container {
+  margin-top: 20px;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+table th, table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+table th {
+  background-color: #4c9aff;
+  color: white;
+  font-size: 1rem;
+}
+
+table td {
+  font-size: 0.95rem;
+  color: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .attack-page {
+    padding: 15px;
+  }
+
+  .missile-buttons button {
+    width: 100%;
+  }
+
+  table {
+    font-size: 0.85rem;
+  }
+
+  table th, table td {
+    padding: 10px;
+  }
+}

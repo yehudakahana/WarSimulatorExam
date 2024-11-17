@@ -1,48 +1,101 @@
-.defense {
-    font-family: Arial, sans-serif;
-    margin: 30px;
-    padding: 20px;
-    background-color: #f7f7f7;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .defense-title {
-    text-align: center;
-    font-size: 2rem;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  .defense-table-container {
-    max-width: 80%;
-    margin: 0 auto;
-    overflow-x: auto;
-  }
-  
-  .defense-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: #fff;
-  }
-  
-  .defense-table th, .defense-table td {
-    padding: 15px;
-    border: 1px solid #ddd;
-    text-align: center;
-    font-size: 1rem;
-  }
-  
-  .defense-table th {
-    background-color: #4CAF50;
-    color: white;
-    font-weight: bold;
-  }
-  
-  .defense-table tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-  
+/* Defence.css */
 
-  
+.defence-container {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 20px;
+  background-color: #f4f4f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 900px;
+  margin: 30px auto;
+}
+
+h2 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.organization-section {
+  margin-bottom: 30px;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.organization-section p {
+  font-size: 18px;
+  color: #444;
+}
+
+.missiles-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.missiles-list li {
+  font-size: 16px;
+  margin: 10px 0;
+  color: #555;
+}
+
+h4 {
+  color: #333;
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+
+.rockets-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.rockets-table th, .rockets-table td {
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+.rockets-table th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.rockets-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.rockets-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.intercept-button {
+  padding: 6px 12px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.intercept-button:hover {
+  background-color: #e53935;
+}
+
+.intercept-button:focus {
+  outline: none;
+}
+
+@media (max-width: 768px) {
+  .defence-container {
+    padding: 15px;
+  }
+
+  .rockets-table {
+    font-size: 14px;
+  }
+}

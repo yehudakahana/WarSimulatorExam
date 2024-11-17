@@ -1,13 +1,15 @@
 // FILL HERE 3.3
 import {configureStore} from "@reduxjs/toolkit"
 import userReducer from "./userSlice";
-import candidatesReducer from "./candidatesSlice";
+import missileSlice from "./missilesSlice";
+import attackSlice from "./attackSlisce";
 
 
 export const store = configureStore({
     reducer:{
         user: userReducer,
-        candidates: candidatesReducer,
+        missiles: missileSlice,
+        attack: attackSlice
     }
 })
 
